@@ -176,6 +176,7 @@ fn value_to_postgres_type(value: &Value) -> Type {
         Value::Float(_) => Type::FLOAT4,
         Value::Double(_) => Type::FLOAT8,
         Value::String(_) => Type::TEXT,
+        Value::Enum(_) => Type::TEXT,
         Value::Char(_) => Type::CHAR,
         Value::Bytes(_) => Type::BYTEA,
         #[cfg(feature = "with-json")]
