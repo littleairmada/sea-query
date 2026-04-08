@@ -177,6 +177,8 @@ fn value_to_postgres_type(value: &Value) -> Type {
         Value::Double(_) => Type::FLOAT8,
         Value::String(_) => Type::TEXT,
         Value::Enum(_) => Type::TEXT,
+        #[cfg(feature = "postgres-range")]
+        Value::Range(_) => Type::INT8_RANGE,
         Value::Char(_) => Type::CHAR,
         Value::Bytes(_) => Type::BYTEA,
         #[cfg(feature = "with-json")]
@@ -266,5 +268,7 @@ fn array_type_to_pg_type(ty: &ArrayType) -> Type {
         ArrayType::IpNetwork => Type::INET_ARRAY,
         #[cfg(feature = "with-mac_address")]
         ArrayType::MacAddress => Type::MACADDR_ARRAY,
+        #[cfg(feature = "postgres-range")]
+        ArrayType::Range => Type::INT8_RANGE_ARRAY,
     }
 }
