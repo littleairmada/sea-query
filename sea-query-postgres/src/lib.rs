@@ -268,6 +268,7 @@ fn array_type_to_pg_type(ty: &ArrayType) -> Type {
         ArrayType::IpNetwork => Type::INET_ARRAY,
         #[cfg(feature = "with-mac_address")]
         ArrayType::MacAddress => Type::MACADDR_ARRAY,
+        ArrayType::Enum(_) => Type::TEXT_ARRAY,
         #[cfg(feature = "postgres-range")]
         ArrayType::Range => Type::INT8_RANGE_ARRAY,
     }
